@@ -8,25 +8,29 @@ contract SumContract {
 }
 
 contract MultiContract is SumContract {
-  function Multiply(uint a, uint b) public returns (uint) {
+  function Multiply(uint a, uint b) public virtual returns (uint) {
      return a * b;
   }
 }
 
 contract DivideContract is SumContract {
-  function Multiply(uint a, uint b) public returns (uint) {
+  function Multiply(uint a, uint b) public virtual returns (uint) {
      return a / b;
   }
 }
 
-contract SubContract is SumContract, MultiContract,DivideContract {
-  function Sub(uint a, uint b) public returns (uint) {
+contract SubContract is SumContract, MultiContract, DivideContract{
+  function Sub(uint a, uint b) public  returns (uint)   {
      return a - b;
+  }
+
+  function Multiply(uint a, uint b) public override(MultiContract, DivideContract) returns (uint) {
+          return a * b;
   }
 }
 
 contract client {
-  function WorkWithInheritance() public returna (uint) {
+  function WorkWithInheritance() public returns (uint) {
      uint a = 20;
      uint b = 10;
      SubContract subt = new SubContract();

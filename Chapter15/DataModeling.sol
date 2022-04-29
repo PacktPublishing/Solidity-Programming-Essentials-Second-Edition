@@ -2,30 +2,25 @@
 
 pragma solidity ^0.8.9; 
 
-Contract EmployeeStore {
-
-    struct employee {
-        Address identifier,
-        Name bytes32,
-        Age uint8,
-        Email bytes32
-    }
+contract EmployeeStore {
 
     struct ContactAddress {
-        bytes32 city;
-        bytes32 state;
+        string city;
+        string state;
     }
 
     struct employee {
         address identifier;
-        bytes32 name ;
+        string name ;
         uint8 age ;
-        bytes32 email ;
+        string email ;
         ContactAddress contact;
     }
 
+    mapping (address => employee) allemployees;
+    address[] employeeReference;
 
-    function AddEmployee(address _identifier, bytes32 _name, uint8 _age, bytes32 _email, bytes32 _state, bytes32 _city) external returns ( bool) {
+    function AddEmployee(address _identifier, string memory _name, uint8 _age,  string memory _email, string memory _state,  string memory _city) external returns ( bool) {
         ContactAddress memory contactadd = ContactAddress(_city, _state);
         allemployees[_identifier].identifier = _identifier;
         allemployees[_identifier].name = _name;
@@ -36,7 +31,7 @@ Contract EmployeeStore {
     }
 
 
-    function GetAnEmployee(address _identifier) external returns ( bytes32 _name, uint8 _age, bytes32 _email, bytes32 _city, bytes32 _state) {
+    function GetAnEmployee(address _identifier) external returns ( string memory _name, uint8 _age, string memory _email, string memory _city, string memory _state) {
         employee memory temp = allemployees[_identifier];
         _name = temp.name;
         _age = temp.age;
@@ -47,7 +42,7 @@ Contract EmployeeStore {
     }
 
 
-    function UpdateEmployee(address _identifier, bytes32 _name, uint8 _age, bytes32 _email, bytes32 _state, bytes32 _city) external returns ( bool) {
+    function UpdateEmployee(address _identifier, string memory _name, uint8 _age, string memory _email, string memory _state, string memory _city) external returns ( bool) {
         ContactAddress memory contactadd = ContactAddress(_city, _state);
         allemployees[_identifier].identifier = _identifier;
         allemployees[_identifier].name = _name;
@@ -57,13 +52,13 @@ Contract EmployeeStore {
     }
 
 
-    function GetAllEmployee(uint startRecord, uint endrecord) external returns ( bytes32[] memory, uint8[] memory, bytes32[] memory, address[] memory , bytes32[] memory , bytes32[] memory) {
+    function GetAllEmployee(uint startRecord, uint endrecord) external returns ( string[] memory, uint8[] memory, string[] memory, address[] memory , string[] memory , string[] memory) {
         uint8[] memory _age = new uint8[](employeeReference.length);
-        bytes32[] memory _name = new bytes32[](employeeReference.length);
-        bytes32[] memory _email = new bytes32[](employeeReference.length);
+        string[] memory _name = new string[](employeeReference.length);
+        string[] memory _email = new string[](employeeReference.length);
         address[] memory _identifier = new address[](employeeReference.length);
-        bytes32[] memory _state = new bytes32[](employeeReference.length);
-        bytes32[] memory _city = new bytes32[](employeeReference.length);
+        string[] memory _state = new string[](employeeReference.length);
+        string[] memory _city = new string[](employeeReference.length);
         for(uint i= startRecord; i <= endrecord; i++) {
             address addressinArray = employeeReference[i-1];
             _age[i-1] = allemployees[addressinArray].age;

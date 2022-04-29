@@ -1,10 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9; 
 
+contract ownable {
+    address owner;
+    
+    constructor()  {
+        owner = msg.sender;
+    }
+
+    modifier onlyowner {
+        require(msg.sender == owner);
+        _;
+    }
+
+}
+
 contract Stoppable is ownable {
     bool isStopped;
 
-    constructor() public payable {
+    constructor()  payable {
         isStopped = false;
     }
 

@@ -4,12 +4,12 @@ pragma solidity ^0.8.9;
 
 contract EtherBox {
 
-    mapping (address => uint) balance;
+    mapping (address  => uint) balance;
     
     function SimpleSendToAccount(uint amount) public returns (bool) {
         if(balance[msg.sender] >= amount ) {
             balance[msg.sender] -= amount;
-            if (msg.sender.send(amount) == true) {
+            if (payable(msg.sender).send(amount) == true) {
                 return true;
             }
             else {
@@ -21,11 +21,11 @@ contract EtherBox {
     
         
     function SimpleTransferToAccount() public  {
-        msg.sender.transfer(1);
+        payable(msg.sender).transfer(1);
     }
 
-    function SimpleTransferToAccount() public  {
-        msg.sender.send(1);
+    function SimpleSendToAccount() public  {
+        payable(msg.sender).send(1);
     }
 
 }

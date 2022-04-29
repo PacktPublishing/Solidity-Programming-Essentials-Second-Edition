@@ -1,10 +1,12 @@
-pragma solidity ^0.8.3;
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
 
 contract IndependentContract {
 
     mapping (address => uint256) balances;
 
-    constructor (uint256 amount) public {
+    constructor (uint256 amount) {
         balances[msg.sender] = amount;
     }
 }
@@ -13,7 +15,7 @@ contract DependentSmartContract {
 
     IndependentContract indeContract;
 
-    constructor(address bankc) public {
+    constructor(address bankc) {
         indeContract = IndependentContract(bankc);
     }
 

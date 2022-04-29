@@ -7,7 +7,7 @@ contract multiownable {
     address owner;
     address[] owners;
 
-    constructor() public {
+    constructor()  {
         owners.push(msg.sender);
         isOwner[msg.sender] = true;
         owner = msg.sender;

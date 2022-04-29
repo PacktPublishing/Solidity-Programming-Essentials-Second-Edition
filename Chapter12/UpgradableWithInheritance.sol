@@ -1,4 +1,5 @@
-pragma solidity ^0.8.3;
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
 
 contract BankStorage {
     mapping (address => uint256) public balances ;
@@ -6,7 +7,7 @@ contract BankStorage {
 
 contract Bank is BankStorage {
 
-    constructor (uint256 amount) public {
+    constructor (uint256 amount)  {
         balances[msg.sender] = amount;
     }
 
@@ -27,7 +28,7 @@ contract BankClient {
 
     Bank bankContract;
 
-    constructor(address bankc) public {
+    constructor(address bankc)  {
         bankContract = Bank(bankc);
     }
 
@@ -47,7 +48,7 @@ contract BankClient {
 
 contract NewBank is BankStorage {
 
-    constructor (uint256 amount) public {
+    constructor (uint256 amount)  {
         balances[msg.sender] = amount;
     }
 

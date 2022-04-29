@@ -25,7 +25,7 @@ contract GeneralStructure {
     } 
 
     //modifier declaration 
-    modifier onlyBy(){(){ 
+    modifier onlyBy(){ 
         if (msg.sender == personIdentifier) { 
             _; 
         } 
@@ -40,7 +40,7 @@ contract GeneralStructure {
 
     //function definition  
     function getAge (address _personIdentifier) onlyBy() payable external returns (uint) { 
-       human =  MyStruct(“Ritesh", 10, true, new uint[](3)); //using struct MyStruct 
+       human =  MyStruct("Ritesh", 10, true, new uint[](3)); //using struct MyStruct 
        gender _gender = gender.male; //using enum  
        emit ageRead(personIdentifier, stateIntVariable); //raising event 
     } 

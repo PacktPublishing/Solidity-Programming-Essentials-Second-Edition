@@ -15,6 +15,7 @@ contract BoolContract {
     
    function convertToUint() public returns (uint8) { 
       isPaid = false;       
-      return uint8(isPaid); //error 
+      return 10;
+     // return uint8(isPaid); //error 
     } 
 } 

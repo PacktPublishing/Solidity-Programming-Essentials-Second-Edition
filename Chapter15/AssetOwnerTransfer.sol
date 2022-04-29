@@ -2,6 +2,20 @@
 
 pragma solidity ^0.8.9; 
 
+contract ownable {
+    address owner;
+    
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyowner {
+        require(msg.sender == owner);
+        _;
+    }
+
+}
+
 contract AssetBank is ownable {
     struct assetHolders {
         bool hasAsset;
@@ -10,7 +24,7 @@ contract AssetBank is ownable {
 
     mapping (address => assetHolders) balances;
 
-    constructor() public {
+    constructor() {
     }
 
     modifier legalOwner {
