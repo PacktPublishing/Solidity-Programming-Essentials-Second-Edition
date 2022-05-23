@@ -3,8 +3,8 @@ pragma solidity >=0.7.0 <0.9.0;
 
 interface IBanking {
 
-    function NewBankingCustomer(uint256 customerid, address custaddress ) public;
-    function GetBankingCustomer(uint256 customerid ) public returns (address);
+    function NewBankingCustomer(uint256 customerid, address custaddress ) external;
+    function GetBankingCustomer(uint256 customerid ) external returns (address);
 
 }
 
@@ -25,11 +25,11 @@ contract mystorage {
 
 contract ManageCustomer is IBanking, mystorage {
 
-    function NewBankingCustomer(uint256 customerid, address custaddress ) public {
+    function NewBankingCustomer(uint256 customerid, address custaddress ) override external {
         SetCustomer(customerid, custaddress);
     }
 
-    function GetBankingCustomer(uint256 customerid ) public returns (address) {
+    function GetBankingCustomer(uint256 customerid ) override external returns (address) {
         address addr = GetCustomer(customerid);
         return addr;
     }
@@ -74,7 +74,8 @@ contract client {
 
     function NewBankingCustomer(uint256 customerid, address custaddress) public returns(bool) {
         //ProxyContract pc = ProxyContract(maincontract);
-        return maincontract.call(msg.data);
+        maincontract.call(msg.data);
+        return true;
     }
 
     function GetBankingCustomer(uint256 customerid) public returns(bool) {
