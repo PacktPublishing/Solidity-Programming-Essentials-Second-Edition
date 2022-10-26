@@ -67,3 +67,7 @@ Is a technologist with more than 18 years of experience. He holds a master's deg
 
 
 
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781803231181">https://packt.link/free-ebook/9781803231181 </a> </p>
